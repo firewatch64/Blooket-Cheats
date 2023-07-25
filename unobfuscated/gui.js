@@ -24,38 +24,38 @@
         for (const child of children) element.append(child);
         return element;
     }
-    let settings;
+    let settings, settingsKey = btoa(Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner.stateNode.props.user.data.name), guiId = 'ODJkMThlMDEtYmEwNi00MzE4LTg4ZGMtM2Y2ZDI0MzY4ZjU2';
     const Settings = {
         data: null,
         setItem(k, v) {
             k.split('.').reduce((obj, k, i, a) => (++i == a.length && (obj[k] = v), obj[k]), this.data);
-            localStorage.setItem("JODGUISettings", JSON.stringify(this.data));
+            localStorage.setItem(settingsKey, JSON.stringify(this.data));
             return this.data;
         },
         deleteItem(k) {
             k.split('.').reduce((obj, k, i, a) => (++i == a.length && (delete obj[k]), obj[k]), this.data);
-            localStorage.setItem("JODGUISettings", JSON.stringify(this.data));
+            localStorage.setItem(settingsKey, JSON.stringify(this.data));
             return this.data;
         },
         setData(v) {
             this.data = v;
-            localStorage.setItem("JODGUISettings", JSON.stringify(this.data));
+            localStorage.setItem(settingsKey, JSON.stringify(this.data));
         }
     }
     try {
-        Settings.data = JSON.parse(localStorage.getItem("JODGUISettings") || "{}");
+        Settings.data = JSON.parse(localStorage.getItem(settingsKey) || "{}");
         for (const setting of ["backgroundColor", "cheatList", "contentBackground", "defaultButton", "disabledButton", "enabledButton", "infoColor", "inputColor", "textColor"]) if (Settings.data[setting]) {
             Settings.setItem(`theme.${setting}`, Settings.data[setting]);
             Settings.deleteItem(setting);
         }
     } catch {
         Settings.setData({});
-    /* // localStorage.setItem("JODGUISettings", "{}"); */
+    /* // localStorage.setItem(settingsKey, "{}"); */
     /* // settings = {}; */
     }
     let variables, gui, cheatContainer, controls, controlButtons, dragButton, content, tooltip, cheats, headerText;
     const guiWrapper = createElement("div", {
-        id: "JODGUI", style: {
+        id: guiId, style: {
             top: `${(Math.max(10, window.innerHeight - 600) / 2)}px`,
             left: `${(Math.max(10, window.innerWidth - 1000) / 2)}px`,
             transform: `scale(${Settings.data.scale})`,
@@ -409,7 +409,7 @@
                 )
         ))
     );
-    for (const oldGui of document.querySelectorAll("#JODGUI")) oldGui.remove();
+    for (const oldGui of document.querySelectorAll("#" + guiId)) oldGui.remove();
     
     document.body.appendChild(guiWrapper);
     
@@ -2868,7 +2868,7 @@
                         return alert("Invalid JSON provided");
                     }
                     theme = { backgroundColor: "rgb(11, 194, 207)", infoColor: "#9a49aa", cheatList: "#9a49aa", defaultButton: "#9a49aa", disabledButton: "#A02626", enabledButton: "#47A547", textColor: "white", inputColor: "#7a039d", contentBackground: "rgb(64, 17, 95)", ...JSON.parse(theme) }
-    /* // localStorage.setItem("JODGUISettings", JSON.stringify(theme)); */
+    /* // localStorage.setItem(settingsKey, JSON.stringify(theme)); */
                     Settings.setItem("theme", theme);
                     for (const prop in theme) variables.sheet.cssRules[0].style.setProperty(`--${prop}`, theme[prop]);
                 }
@@ -2877,7 +2877,7 @@
                 name: "Export Settings",
                 description: "Export the current theme to JSON",
                 run: async function () {
-    /* // await navigator.clipboard.writeText(JSON.stringify(JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), null, 4)); */
+    /* // await navigator.clipboard.writeText(JSON.stringify(JSON.parse(localStorage.getItem(settingsKey) || "{}"), null, 4)); */
                     await navigator.clipboard.writeText(JSON.stringify(Settings.data.theme, null, 4));
                     prompt("Text copied to clipboard. (Paste below to test)");
                 }
@@ -3094,7 +3094,7 @@
                     }
                 ],
                 run: function (theme) {
-    /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), ...theme })); */
+    /* // localStorage.setItem(settingsKey, JSON.stringify({ ...JSON.parse(localStorage.getItem(settingsKey) || "{}"), ...theme })); */
                     Settings.setItem("theme", { ...Settings.data.theme, ...theme });
                     for (const prop in theme) variables.sheet.cssRules[0].style.setProperty(`--${prop}`, theme[prop]);
                 }
@@ -3113,7 +3113,7 @@
                 ],
                 run: function (scale) {
                     scale = Math.min(Math.max(scale, 25), 100);
-    /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), scale: scale / 100 })); */
+    /* // localStorage.setItem(settingsKey, JSON.stringify({ ...JSON.parse(localStorage.getItem(settingsKey) || "{}"), scale: scale / 100 })); */
                     Settings.setItem("scale", scale / 100);
                     guiWrapper.style.transform = `scale(${(scale / 100)})`;
                 }
@@ -3129,7 +3129,7 @@
                     }
                 ],
                 run: function (hide) {
-    /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), hide })); */
+    /* // localStorage.setItem(settingsKey, JSON.stringify({ ...JSON.parse(localStorage.getItem(settingsKey) || "{}"), hide })); */
                     Settings.setItem("hide", hide);
                     controls.update(Settings.data.hide || { ctrl: true, key: "e" }, Settings.data.close || { ctrl: true, key: "x" });
                 }
@@ -3145,7 +3145,7 @@
                     }
                 ],
                 run: function (close) {
-    /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), close })); */
+    /* // localStorage.setItem(settingsKey, JSON.stringify({ ...JSON.parse(localStorage.getItem(settingsKey) || "{}"), close })); */
                     Settings.setItem("close", close);
                     controls.update(Settings.data.hide || { ctrl: true, key: "e" }, Settings.data.close || { ctrl: true, key: "x" });
                 }
@@ -3159,7 +3159,7 @@
                 }],
                 run: function (color) {
                     variables.sheet.cssRules[0].style.setProperty("--backgroundColor", color);
-    /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), backgroundColor: color })); */
+    /* // localStorage.setItem(settingsKey, JSON.stringify({ ...JSON.parse(localStorage.getItem(settingsKey) || "{}"), backgroundColor: color })); */
                     Settings.setItem("theme.backgroundColor", color);
                 }
             },
@@ -3172,7 +3172,7 @@
                 }],
                 run: function (color) {
                     variables.sheet.cssRules[0].style.setProperty("--cheatList", color);
-    /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), cheatList: color })); */
+    /* // localStorage.setItem(settingsKey, JSON.stringify({ ...JSON.parse(localStorage.getItem(settingsKey) || "{}"), cheatList: color })); */
                     Settings.setItem("theme.cheatList", color);
                 }
             },
@@ -3185,7 +3185,7 @@
                 }],
                 run: function (color) {
                     variables.sheet.cssRules[0].style.setProperty("--infoColor", color);
-    /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), infoColor: color })); */
+    /* // localStorage.setItem(settingsKey, JSON.stringify({ ...JSON.parse(localStorage.getItem(settingsKey) || "{}"), infoColor: color })); */
                     Settings.setItem("theme.infoColor", color);
                 }
             },
@@ -3198,7 +3198,7 @@
                 }],
                 run: function (color) {
                     variables.sheet.cssRules[0].style.setProperty("--defaultButton", color);
-    /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), defaultButton: color })); */
+    /* // localStorage.setItem(settingsKey, JSON.stringify({ ...JSON.parse(localStorage.getItem(settingsKey) || "{}"), defaultButton: color })); */
                     Settings.setItem("theme.defaultButton", color);
                 }
             },
@@ -3211,7 +3211,7 @@
                 }],
                 run: function (color) {
     /* // variables.sheet.cssRules[0].style.setProperty("--enabledButton", color); */
-    /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), enabledButton: color })); */
+    /* // localStorage.setItem(settingsKey, JSON.stringify({ ...JSON.parse(localStorage.getItem(settingsKey) || "{}"), enabledButton: color })); */
                     Settings.setItem("theme.enabledButton", color);
                 }
             },
@@ -3224,7 +3224,7 @@
                 }],
                 run: function (color) {
                     variables.sheet.cssRules[0].style.setProperty("--disabledButton", color);
-    /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), disabledButton: color })); */
+    /* // localStorage.setItem(settingsKey, JSON.stringify({ ...JSON.parse(localStorage.getItem(settingsKey) || "{}"), disabledButton: color })); */
                     Settings.setItem("theme.disabledButton", color);
                 }
             },
@@ -3237,7 +3237,7 @@
                 }],
                 run: function (color) {
                     variables.sheet.cssRules[0].style.setProperty("--textColor", color);
-    /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), textColor: color })); */
+    /* // localStorage.setItem(settingsKey, JSON.stringify({ ...JSON.parse(localStorage.getItem(settingsKey) || "{}"), textColor: color })); */
                     Settings.setItem("theme.textColor", color);
                 }
             },
@@ -3250,7 +3250,7 @@
                 }],
                 run: function (color) {
                     variables.sheet.cssRules[0].style.setProperty("--inputColor", color);
-    /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), inputColor: color })); */
+    /* // localStorage.setItem(settingsKey, JSON.stringify({ ...JSON.parse(localStorage.getItem(settingsKey) || "{}"), inputColor: color })); */
                     Settings.setItem("theme.inputColor", color);
                 }
             },
@@ -3263,7 +3263,7 @@
                 }],
                 run: function (color) {
                     variables.sheet.cssRules[0].style.setProperty("--contentBackground", color);
-    /* // localStorage.setItem("JODGUISettings", JSON.stringify({ ...JSON.parse(localStorage.getItem("JODGUISettings") || "{}"), contentBackground: color })); */
+    /* // localStorage.setItem(settingsKey, JSON.stringify({ ...JSON.parse(localStorage.getItem(settingsKey) || "{}"), contentBackground: color })); */
                     Settings.setItem("theme.contentBackground", color);
                 }
             }
