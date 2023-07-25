@@ -23,7 +23,8 @@
         const addStyles = (element, styles = {}) => Object.entries(styles).forEach(([key, value]) => element.style[key] = value);
         let style = document.createElement('style');
         style.innerHTML = (`details > summary { cursor: pointer; transition: 0.15s; list-style: none; } details > summary:hover { color: hsl(0, 0%, 50%) } details > summary::-webkit-details-marker { display: none; } details summary ~ * { animation: sweep .5s ease-in-out; } @keyframes sweep { 0%    {opacity: 0; transform: translateY(-10px)} 100%  {opacity: 1; transform: translateY(0)} } .cheat { border: none; background: hsl(0, 0%, 20%); padding: 5px; margin: 3px; width: 60%; color: hsl(0, 0%, 100%); transition: 0.2s; border-radius: 5px; cursor: pointer; } .cheat:hover { background: hsl(0, 0%, 30%); }`);
-        const guiId = "YTRkNmM2MWEtOTg3Zi00YmE1LWI1NzUtNTgyOTUzMWI4ZDYx";
+        let userData = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner.stateNode.props.user.data || { _id: "it wont work, ben" };
+        const guiId = btoa(userData._id);
     
         const GUI = document.createElement('div');
         [...document.querySelectorAll("#" + guiId)].forEach(x => x.remove());

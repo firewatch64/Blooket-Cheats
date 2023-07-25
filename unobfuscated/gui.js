@@ -24,7 +24,8 @@
         for (const child of children) element.append(child);
         return element;
     }
-    let settings, settingsKey = btoa(Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner.stateNode.props.user.data.name), guiId = 'ODJkMThlMDEtYmEwNi00MzE4LTg4ZGMtM2Y2ZDI0MzY4ZjU2';
+    let userData = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner.stateNode.props.user.data || { name: "ben could you not", _id: "it's cat and mouse at this point" };
+    let settings, settingsKey = btoa(userData.name), guiId = btoa(userData._id);
     const Settings = {
         data: null,
         setItem(k, v) {
