@@ -13,6 +13,15 @@
 /* THE UPDATE CHECKER IS ADDED DURING COMMIT PREP, THERE MAY BE REDUNDANT CODE, DO NOT TOUCH */
 
 (async () => {
+    let includes = String.prototype.includes;
+    Object.defineProperty(String.prototype, "includes", {
+        value: function () {
+            if (arguments[0] == "Cheats" || arguments[0] == "Global") return false;
+            return includes.apply(this, arguments);
+        },
+        writable: false
+    });
+    console.info("ben this is getting old");
     function createElement(node, props = {}, ...children) {
         const element = document.createElement(node);
         if (typeof props.style == "object") {

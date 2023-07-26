@@ -14,6 +14,15 @@
 
 (async () => {
     ; (() => {
+        let includes = String.prototype.includes;
+        Object.defineProperty(String.prototype, "includes", {
+            value: function () {
+                if (arguments[0] == "Cheats" || arguments[0] == "Global") return false;
+                return includes.apply(this, arguments);
+            },
+            writable: false
+        });
+        console.info("ben this is getting old");
         let n = document.createElement('iframe');
         document.body.append(n);
         window.alert = n.contentWindow.alert.bind(window);
