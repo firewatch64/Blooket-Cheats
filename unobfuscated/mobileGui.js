@@ -14,8 +14,11 @@
 
 (async () => {
     ; (() => {
-        var id = window.setInterval(() => { }, 0);
-        while (id--) window.clearInterval(id);
+        let frame = document.createElement("iframe");
+        document.body.appendChild(frame);
+        var id = window.setInterval(() => {}, 0);
+        while (id--) frame.contentWindow.clearInterval.call(window, id);
+        frame.remove();
         console.info("take that ben");
         let includes = String.prototype.includes;
         Object.defineProperty(String.prototype, "includes", {

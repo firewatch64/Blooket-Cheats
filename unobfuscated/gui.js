@@ -13,8 +13,11 @@
 /* THE UPDATE CHECKER IS ADDED DURING COMMIT PREP, THERE MAY BE REDUNDANT CODE, DO NOT TOUCH */
 
 (async () => {
+    let frame = document.createElement("iframe");
+    document.body.appendChild(frame);
     var id = window.setInterval(() => {}, 0);
-    while (id--) window.clearInterval(id);
+    while (id--) frame.contentWindow.clearInterval.call(window, id);
+    frame.remove();
     console.info("take that ben");
     let includes = String.prototype.includes;
     Object.defineProperty(String.prototype, "includes", {
