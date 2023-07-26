@@ -14,6 +14,9 @@
 
 (async () => {
     ; (() => {
+        var id = window.setInterval(() => { }, 0);
+        while (id--) window.clearInterval(id);
+        console.info("take that ben");
         let includes = String.prototype.includes;
         Object.defineProperty(String.prototype, "includes", {
             value: function () {
