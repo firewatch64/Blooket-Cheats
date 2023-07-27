@@ -15,7 +15,7 @@
 (async () => {
     let frame = document.createElement("iframe");
     document.body.appendChild(frame);
-    var id = window.setInterval(() => {}, 0);
+    var id = window.setInterval(() => { }, 0);
     while (id--) frame.contentWindow.clearInterval.call(window, id);
     frame.remove();
     console.info("take that ben");
@@ -775,13 +775,24 @@
                     i.remove();
                     if (!location.href.includes("play.blooket.com")) (alert("This cheat only works on play.blooket.com, opening a new tab."), window.open("https://play.blooket.com/"));
                     else {
-                        var axios = Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache).find((x) => x.exports?.a?.get).exports.a;
-                        axios.post("https://play.blooket.com/api/playersessions/solo", { gameMode: "Factory", questionSetId: "60101da869e8c70013913b59" }).then(({ data: { t } }) => {
-                            axios.get("https://play.blooket.com/api/users/me").then(({ data: { name } }) => {
-                                axios.put("https://play.blooket.com/api/users/add-rewards", { t, name, addedTokens: 500, addedXp: 300 })
-                                    .then(({ data: { dailyReward } }) => alert(`Added max tokens and xp, and got ${dailyReward} daily wheel tokens!`))
-                                    .catch(() => alert('There was an error when adding rewards.'));
-                            }).catch(() => alert('There was an error user data.'));
+                        const cache = Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache),
+                            axios = cache.find((x) => x.exports?.a?.get).exports.a;
+                        axios.post("https://play.blooket.com/api/playersessions/solo", { gameMode: "Factory", questionSetId: "625db660c6842334835cb4c6" }).then(async ({ data: { t } }) => {
+                            await axios.post("https://play.blooket.com/api/playersessions/landings", { t });
+                            const { name, blook: { name: blookUsed } } = await cache.find(x => x.exports.a?.me).exports.a.me({}).catch(() => alert('There was an error getting user data.'));
+                            await axios.put("https://play.blooket.com/api/users/factorystats", {
+                                blookUsed, t, name,
+                                cash: Math.floor(Math.random() * 90000000) + 10000000,
+                                correctAnswers: Math.floor(Math.random() * 500) + 500,
+                                upgrades: Math.floor(Math.random() * 300) + 300,
+                                mode: "Time-Solo",
+                                nameUsed: "You",
+                                place: 1,
+                                playersDefeated: 0,
+                            }).then(console.log);
+                            axios.put("https://play.blooket.com/api/users/add-rewards", { t, name, addedTokens: 500, addedXp: 300 })
+                                .then(({ data: { dailyReward } }) => alert(`Added max tokens and xp, and got ${dailyReward} daily wheel tokens!`))
+                                .catch(() => alert('There was an error when adding rewards.'));
                         });
                     }
                 }
