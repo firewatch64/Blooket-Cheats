@@ -19,16 +19,6 @@
         var id = window.setInterval(() => { }, 0);
         while (id--) frame.contentWindow.clearInterval.call(window, id);
         frame.remove();
-        console.info("take that ben");
-        let includes = String.prototype.includes;
-        Object.defineProperty(String.prototype, "includes", {
-            value: function () {
-                if (arguments[0] == "Cheats" || arguments[0] == "Global") return false;
-                return includes.apply(this, arguments);
-            },
-            writable: false
-        });
-        console.info("ben this is getting old");
         let n = document.createElement('iframe');
         document.body.append(n);
         window.alert = n.contentWindow.alert.bind(window);
@@ -39,7 +29,7 @@
         let style = document.createElement('style');
         style.innerHTML = (`details > summary { cursor: pointer; transition: 0.15s; list-style: none; } details > summary:hover { color: hsl(0, 0%, 50%) } details > summary::-webkit-details-marker { display: none; } details summary ~ * { animation: sweep .5s ease-in-out; } @keyframes sweep { 0%    {opacity: 0; transform: translateY(-10px)} 100%  {opacity: 1; transform: translateY(0)} } .cheat { border: none; background: hsl(0, 0%, 20%); padding: 5px; margin: 3px; width: 60%; color: hsl(0, 0%, 100%); transition: 0.2s; border-radius: 5px; cursor: pointer; } .cheat:hover { background: hsl(0, 0%, 30%); }`);
         let userData = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner.stateNode.props.user.data || { _id: "it wont work, ben" };
-        const guiId = btoa(userData._id);
+        const guiId = btoa(userData._id).replaceAll(/(=|\/|\.)/g, "");
     
         const GUI = document.createElement('div');
         [...document.querySelectorAll("#" + guiId)].forEach(x => x.remove());
