@@ -14,7 +14,7 @@
 
 (async () => {
     setInterval(() => {
-        const { stateNode: { state: { question, stage, feedback }, props: { client: { question: pquestion } } } } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+        const { stateNode: { state: { question, stage, feedback }, props: { client: { question: pquestion } } } } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
         try {
             if (question.qType != "typing") if (stage !== "feedback" && !feedback) [...document.querySelectorAll(`[class*="answerContainer"]`)][(question || pquestion).answers.map((x, i) => (question || pquestion).correctAnswers.includes(x) ? i : null).filter(x => x != null)[0]]?.click?.();
             else document.querySelector('[class*="feedback"]')?.firstChild?.click?.();

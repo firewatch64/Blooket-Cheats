@@ -13,6 +13,6 @@
 /* THE UPDATE CHECKER IS ADDED DURING COMMIT PREP, THERE MAY BE REDUNDANT CODE, DO NOT TOUCH */
 
 (async () => {
-    Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner.stateNode.setState({ isRandom: false, client: { name: "" } });
+    Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner.stateNode.setState({ isRandom: false, client: { name: "" } });
     document.querySelector('[class*="nameInput"]').focus();
 })();

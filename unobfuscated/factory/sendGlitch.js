@@ -17,7 +17,7 @@
     document.body.append(i);
     window.alert = i.contentWindow.alert.bind(window);
     i.remove();
-    let { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+    let { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
     let glitches = { lb: "Lunch Break", as: "Ad Spam", e37: "Error 37", nt: "Night Time", lo: "#LOL", j: "Jokester", sm: "Slow Mo", dp: "Dance Party", v: "Vortex", r: "Reverse", f: "Flip", m: "Micro" };
     let val = Object.keys(glitches)[Math.floor(Math.random() * Object.keys(glitches).length)];
     stateNode.safe = true;

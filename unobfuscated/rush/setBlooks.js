@@ -18,7 +18,7 @@
     window.prompt = i.contentWindow.prompt.bind(window);
     i.remove();
     let numBlooks = Number(parseInt(prompt("How many blooks do you want?")));
-    let { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+    let { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
     stateNode.setState({ numBlooks });
     stateNode.isTeam ? stateNode.props.liveGameController.setVal({
         path: `a/${stateNode.props.client.name}/bs`,

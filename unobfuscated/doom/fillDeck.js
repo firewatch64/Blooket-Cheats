@@ -19,7 +19,7 @@
     i.remove();
     if (window.location.pathname == "/tower/map") {
         const { a: artifacts, c: allCards } = webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']],]).cache["gvfT"].exports;
-        const { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+        const { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
         stateNode.props.tower.artifacts = Object.keys(artifacts);
         stateNode.props.tower.cards = Object.entries(allCards).map(([blook, card]) => ({ ...card, blook, strength: 20, charisma: 20, wisdom: 20 }));
         try { stateNode.props.addTowerNode(); } catch { }

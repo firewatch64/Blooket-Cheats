@@ -13,7 +13,7 @@
 /* THE UPDATE CHECKER IS ADDED DURING COMMIT PREP, THERE MAY BE REDUNDANT CODE, DO NOT TOUCH */
 
 (async () => {
-    let { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+    let { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
     stateNode.props.liveGameController.getDatabaseVal("c", (players) => {
         stateNode.setState({
             players: (players ? Object.entries(players).map(([name, { b, g }]) => ({

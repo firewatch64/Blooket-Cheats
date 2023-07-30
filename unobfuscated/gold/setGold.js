@@ -18,7 +18,7 @@
     window.prompt = i.contentWindow.prompt.bind(window);
     i.remove();
     let gold = Number(parseInt(prompt("How much gold would you like?")));
-    let { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+    let { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
     stateNode.setState({ gold, gold2: gold });
     stateNode.props.liveGameController.setVal({
         path: "c/".concat(stateNode.props.client.name),

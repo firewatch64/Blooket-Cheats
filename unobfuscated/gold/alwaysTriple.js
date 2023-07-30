@@ -13,7 +13,7 @@
 /* THE UPDATE CHECKER IS ADDED DURING COMMIT PREP, THERE MAY BE REDUNDANT CODE, DO NOT TOUCH */
 
 (async () => {
-    let { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+    let { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
     stateNode.state.gold == 0 && stateNode.setState({ gold: 100, gold2: 100 });
     stateNode._choosePrize ||= stateNode.choosePrize;
     stateNode.choosePrize = function (i) {

@@ -18,7 +18,7 @@
     window.prompt = i.contentWindow.prompt.bind(window);
     i.remove();
     let target = prompt("Who's crypto would you like to steal?");
-    let { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+    let { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
     stateNode.props.liveGameController.getDatabaseVal("c", (players) => {
         if (players && Object.keys(players).map(x => x.toLowerCase()).includes(target.toLowerCase())) {
             let [player, { cr }] = Object.entries(players).find(([name]) => name.toLowerCase() == target.toLowerCase());

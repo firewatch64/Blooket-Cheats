@@ -18,7 +18,7 @@
     window.prompt = i.contentWindow.prompt.bind(window);
     i.remove();
     let numDefense = Math.min(Number(parseInt(prompt("How much defense do you want? (Max 4)"))), 4);
-    let { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+    let { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
     stateNode.setState({ numDefense });
     stateNode.isTeam ? stateNode.props.liveGameController.setVal({
         path: `a/${stateNode.props.client.name}/d`,

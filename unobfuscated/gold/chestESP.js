@@ -13,7 +13,7 @@
 /* THE UPDATE CHECKER IS ADDED DURING COMMIT PREP, THERE MAY BE REDUNDANT CODE, DO NOT TOUCH */
 
 (async () => {
-    let { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+    let { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
     stateNode.state.choices.forEach(({ text }, index) => {
         let chest = document.querySelector(`div[class^='styles__choice${index + 1}']`);
         if (!chest || chest.querySelector('div')) return;

@@ -17,7 +17,7 @@
     document.body.append(i);
     window.alert = i.contentWindow.alert.bind(window);
     i.remove();
-    let { stateNode: { props, state } } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+    let { stateNode: { props, state } } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
     let count = 0;
     props.liveGameController.getDatabaseVal("c", async (players) => {
         if (players) for (const player of Object.keys(players)) {

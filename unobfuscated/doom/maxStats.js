@@ -17,7 +17,7 @@
     document.body.append(i);
     window.alert = i.contentWindow.alert.bind(window);
     i.remove();
-    const { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+    const { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
     if (stateNode.state.phase !== 'select') alert('You must be on the attribute selection page!');
     else stateNode.setState({ myCard: { ...stateNode.state.myCard, strength: 20, charisma: 20, wisdom: 20 } });
 })();

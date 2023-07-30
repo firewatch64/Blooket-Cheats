@@ -19,7 +19,7 @@
     i.remove();
     if (window.location.pathname == "/tower/battle") {
         let coins = parseInt("0" + alert("How many coins would you like?"));
-        let { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+        let { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
         try {
             stateNode.props.setTowerCoins(coins);
         } catch { }

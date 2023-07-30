@@ -19,7 +19,7 @@
     i.remove();
     if (window.location.pathname !== "/cafe") alert("This can't be run in the shop");
     else {
-        const { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+        const { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
         stateNode.setState({ foods: stateNode.state.foods.map(e => ({ ...e, stock: 99, level: 5 })) });
     }
 })();

@@ -17,5 +17,5 @@
     document.body.append(i);
     window.prompt = i.contentWindow.prompt.bind(window);
     i.remove();
-    Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner.stateNode.setState({ health: Number(parseInt(prompt("How much health do you want?"))) });
+    Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner.stateNode.setState({ health: Number(parseInt(prompt("How much health do you want?"))) });
 })();

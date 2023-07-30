@@ -17,7 +17,7 @@
     document.body.append(i);
     window.alert = i.contentWindow.alert.bind(window);
     i.remove();
-    let { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+    let { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
     const f = ["Crab", "Jellyfish", "Frog", "Pufferfish", "Octopus", "Narwhal", "Megalodon", "Blobfish", "Baby Shark"][Math.floor(Math.random() * 9)];
     stateNode.safe = true;
     stateNode.props.liveGameController.setVal({

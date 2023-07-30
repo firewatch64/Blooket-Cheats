@@ -15,7 +15,7 @@
 (async () => {
     let stats = ['materials', 'people', 'happiness', 'gold'];
     let elements = Object.fromEntries([...document.querySelectorAll('[class^=styles__statContainer]')].map((container, i) => [stats[i], container]));
-    let { guest: data, phase } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner.stateNode.state;
+    let { guest: data, phase } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner.stateNode.state;
     if (phase == "choice") {
         Array.from(document.getElementsByClassName('choiceESP')).forEach(x => x.remove());
         Object.entries(data.yes || {}).forEach(x => {

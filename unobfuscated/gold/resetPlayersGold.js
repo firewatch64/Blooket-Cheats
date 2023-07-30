@@ -18,7 +18,7 @@
     window.prompt = i.contentWindow.prompt.bind(window);
     i.remove();
     let player = prompt("Who's gold would you like to reset?");
-    let { stateNode: { props, state } } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+    let { stateNode: { props, state } } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
     stateNode.props.liveGameController.getDatabaseVal("c", (players) => {
         if (players && Object.keys(players).map(x=>x.toLowerCase()).includes(player.toLowerCase())) props.liveGameController.setVal({
             path: "c/".concat(props.client.name),

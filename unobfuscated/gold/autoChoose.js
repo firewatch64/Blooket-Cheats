@@ -14,7 +14,7 @@
 
 (async () => {
     try {
-        let { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+        let { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
         if (stateNode.state.stage === "prize") {
             const players = Object.entries(await new Promise(r => stateNode.props.liveGameController.getDatabaseVal("c", c => c && r(c))) || []).filter(x => x[0] != stateNode.props.client.name).sort((a, b) => b[1].g - a[1].g)[0]?.[1]?.g || 0;
             let max = 0; index = -1;

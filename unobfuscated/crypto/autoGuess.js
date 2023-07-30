@@ -13,6 +13,6 @@
 /* THE UPDATE CHECKER IS ADDED DURING COMMIT PREP, THERE MAY BE REDUNDANT CODE, DO NOT TOUCH */
 
 (async () => {
-    let { state } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner.stateNode;
+    let { state } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner.stateNode;
     if (state.stage == "hack") for (const button of document.querySelector('div[class^=styles__buttonContainer]').children) button.innerText == state.correctPassword && button.click();
 })();

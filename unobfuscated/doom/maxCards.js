@@ -18,7 +18,7 @@
     window.alert = i.contentWindow.alert.bind(window);
     i.remove();
     if (window.location.pathname == "/tower/map") {
-        const { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+        const { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
         stateNode.props.tower.cards.forEach(card => {
             card.strength = 20;
             card.charisma = 20;

@@ -13,7 +13,7 @@
 /* THE UPDATE CHECKER IS ADDED DURING COMMIT PREP, THERE MAY BE REDUNDANT CODE, DO NOT TOUCH */
 
 (async () => {
-    const { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+    const { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
     stateNode.setState({ progress: stateNode.state.goalAmount }, () => {
         const { state: { question } } = stateNode;
         try {

@@ -13,7 +13,7 @@
 /* THE UPDATE CHECKER IS ADDED DURING COMMIT PREP, THERE MAY BE REDUNDANT CODE, DO NOT TOUCH */
 
 (async () => {
-    let { stateNode: { ducks, tiles } } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+    let { stateNode: { ducks, tiles } } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
     ducks.forEach(x => { tiles[x.y][x.x] = 0; });
     ducks.length = 0;
 })();

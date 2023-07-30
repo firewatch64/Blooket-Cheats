@@ -17,5 +17,5 @@
     document.body.append(i);
     window.prompt = i.contentWindow.prompt.bind(window);
     i.remove();
-    Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner.stateNode.setState({ lure: Math.max(Math.min(Number(parseInt(prompt("What would you like to set your lure to? (1 - 5)"))) - 1, 4), 0) });
+    Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner.stateNode.setState({ lure: Math.max(Math.min(Number(parseInt(prompt("What would you like to set your lure to? (1 - 5)"))) - 1, 4), 0) });
 })();

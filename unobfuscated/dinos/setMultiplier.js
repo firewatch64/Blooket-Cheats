@@ -18,6 +18,6 @@
     window.prompt = i.contentWindow.prompt.bind(window);
     i.remove();
     let fossilMult = Number(parseInt(prompt("What do you want your multiplier to be?")));
-    let { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+    let { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
     stateNode.setState({ fossilMult });
 })();

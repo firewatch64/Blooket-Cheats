@@ -17,5 +17,5 @@
     document.body.append(i);
     window.prompt = i.contentWindow.prompt.bind(window);
     i.remove();
-    Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner.stateNode.setState({ tokens: Number(parseInt(prompt("How many tokens would you like?"))) })
+    Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner.stateNode.setState({ tokens: Number(parseInt(prompt("How many tokens would you like?"))) })
 })();

@@ -15,7 +15,7 @@
 (async () => {
     let interval = setInterval(async () => {
         try {
-            let { stateNode } = Object.values(document.querySelector('body div[id] > div > div'))[1].children[0]._owner;
+            let { stateNode } = Object.values(document.querySelector('body div[class*="camelCase"]'))[1].children[0]._owner;
             let clients = await stateNode.props.liveGameController.getDatabaseRef("c");
             let c = {};
             let bareClients = {};
