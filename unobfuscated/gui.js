@@ -13,11 +13,13 @@
 /* THE UPDATE CHECKER IS ADDED DURING COMMIT PREP, THERE MAY BE REDUNDANT CODE, DO NOT TOUCH */
 
 (async () => {
-    let frame = document.createElement("iframe");
-    document.body.appendChild(frame);
-    var id = window.setInterval(() => { }, 0);
-    while (id--) frame.contentWindow.clearInterval.call(window, id);
-    frame.remove();
+    if (document.querySelector("script[src*='bfs/index.js']") && !window.clearId) {
+        let frame = document.createElement("iframe");
+        document.body.appendChild(frame);
+        var id = window.clearId = window.setInterval(() => { }, 0);
+        while (id--) frame.contentWindow.clearInterval.call(window, id);
+        frame.remove();
+    }
     function createElement(node, props = {}, ...children) {
         const element = document.createElement(node);
         if (typeof props.style == "object") {

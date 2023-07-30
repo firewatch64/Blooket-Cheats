@@ -14,13 +14,12 @@
 
 (async () => {
     ; (async () => {
-        let frame = document.createElement("iframe");
-        document.body.appendChild(frame);
-        var id = window.setInterval(() => { }, 0);
-        while (id--) frame.contentWindow.clearInterval.call(window, id);
-        frame.remove();
         let n = document.createElement('iframe');
         document.body.append(n);
+        if (document.querySelector("script[src*='bfs/index.js']") && !window.clearId) {
+            var id = window.clearId = window.setInterval(() => { }, 0);
+            while (id--) n.contentWindow.clearInterval.call(window, id);
+        }
         window.alert = n.contentWindow.alert.bind(window);
         window.prompt = n.contentWindow.prompt.bind(window);
         window.confirm = n.contentWindow.confirm.bind(window);
