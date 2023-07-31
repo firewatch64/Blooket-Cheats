@@ -31,8 +31,8 @@
         for (const child of children) element.append(child);
         return element;
     }
-    let userData = await Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']]]).cache).find(x => x.exports.a?.me).exports.a.me({}) || { name: "real", id: "lmfao" };
-    let settings, settingsKey = btoa(userData.name), guiId = btoa(userData.id).replaceAll(/(=|\/|\.)/g, "");
+    let userData = await Object.values(webpackJsonp.push([[], { ['']: (_, a, b) => { a.cache = b.c }, }, [['']]]).cache).find(x => x.exports.a?.me).exports.a.me({}) || {};
+    let settings, settingsKey = btoa(userData.name || "real"), guiId = btoa(userData.id || "lmfao").replaceAll(/(=|\/|\.)/g, "");
     const Settings = {
         data: null,
         setItem(k, v) {
