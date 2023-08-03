@@ -193,42 +193,6 @@
                     }
                 },
                 {
-                    name: "Auto Sell Dupes On Open",
-                    description: "Sells the blook you unlock when you open a pack if you already have one (Doesn't sell Legendaries or rarer)",
-                    type: "toggle",
-                    enabled: false,
-                    data: null,
-                    run: function () {
-                        if (!this.enabled) {
-                            this.enabled = true;
-                            let { webpack } = webpackJsonp.push([[], { ['1234']: (_, a, b) => { a.webpack = b }, }, [['1234']]]),
-                                { sellBlook } = Object.values(webpack.c).find(x => x.exports.a?.sellBlook).exports.a,
-                                { rarity } = webpackJsonp.push([[], { ['rarity']: (_, a, b) => { a.rarity = (blook) => b('MDrD').a[blook].rarity } }, [['rarity']]]),
-                                axios = Object.values(webpack.c).find((x) => x.exports?.a?.get).exports.a;
-                            this.data = window.fetch;
-                            window._fetch ||= window.fetch;
-                            window.fetch = async function (url, data) {
-                                const response = await _fetch(url, data);
-                                return url.endsWith("PurchaseBlookBox") ? await new Promise(res => {
-                                    response.clone().text().then(async text => {
-                                        try {
-                                            const blook = text.match(/[a-z A-Z]/g).join('');
-                                            const { data: { unlocks } } = await axios.get("https://dashboard.blooket.com/api/users");
-                                            if (!unlocks[blook] || ["Legendary", "Chroma", "Mystical"].includes(rarity(blook))) return;
-                                            await sellBlook({ blook, numToSell: 1 });
-                                            console.info(`Sold duplicate ${blook}`);
-                                        } catch { }
-                                    });
-                                    res(response);
-                                }) : response;
-                            }
-                        } else {
-                            this.enabled = false;
-                            window.fetch = this.data;
-                        }
-                    }
-                },
-                {
                     name: "Auto Answer",
                     description: "Click the correct answer for you",
                     run: function () {
