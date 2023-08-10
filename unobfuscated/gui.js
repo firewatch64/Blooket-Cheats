@@ -717,7 +717,7 @@
                             const auth = firebase.auth(liveApp);
                             await auth.setPersistence(firebase.auth.Auth.Persistence.NONE).catch(console.error);
                             await auth.signInWithCustomToken(fbToken).catch(console.error);
-                            await liveApp.database().ref(`${id}/c/${ign}`).set({ b: b == "random" ? blooks[Math.floor(Math.random() * blooks.length)] : b, bg });
+                            await liveApp.database().ref(`${id}/c/${ign}`).set({ b: b == "Random" ? blooks[Math.floor(Math.random() * blooks.length)] : b, bg });
                             liveApp.delete();
                         })();
                         await new Promise(r => setTimeout(r, 100));
